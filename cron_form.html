@@ -173,8 +173,9 @@
             $("#validate").on("click", function () {
                 const v = $("#output").val();
                 try {
-                    const c = new Cron(v);
-                    $("#validation").html(`<span class='text-success'>Valid cron. Next run: ${c.nextRun().toString()}</span>`);
+                    const c = new Cron(v); // create Cron object
+                    const nextRun = c.next(); // get next occurrence
+                    $("#validation").html(`<span class='text-success'>Valid cron. Next run: ${nextRun}</span>`);
                 } catch (e) {
                     $("#validation").html(`<span class='text-danger'>Invalid cron: ${e.message}</span>`);
                 }
